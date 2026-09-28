@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+requests
+pandas
+textblob
+scikit-learn
+pydantic
+sqlalchemy
+python-dotenv
+colorama
+rich
+google-search-results
