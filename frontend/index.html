@@ -44,7 +44,7 @@
   .logo { display:flex; align-items:center; gap:.6rem; font-family:'Syne',sans-serif; font-weight:800; font-size:1.05rem; }
   .logo-mark { width:26px; height:26px; border-radius:8px; background:conic-gradient(from 180deg,var(--accent),var(--accent-3),var(--accent)); box-shadow:0 0 20px rgba(124,106,255,.6); }
   .nav-links { display:flex; gap:1.75rem; font-size:.85rem; color:var(--muted); font-family:'DM Mono',monospace; }
-  .nav-links a { color:inherit; text-decoration:none; transition:color .2s; }
+  .nav-links a { color:inherit; text-decoration:none; transition:color .2s; cursor:pointer; }
   .nav-links a:hover { color:var(--text); }
   .status { display:flex; align-items:center; gap:.5rem; font-family:'DM Mono',monospace; font-size:.72rem; color:var(--muted); }
   .status .dot { width:6px; height:6px; border-radius:50%; background:var(--muted); }
@@ -97,7 +97,6 @@
   .hint button { background:none; border:none; color:var(--accent-3); cursor:pointer; font:inherit; padding:0; }
   .hint button:hover { text-decoration:underline; }
 
-  /* Pipeline */
   .pipeline {
     display:flex; align-items:center; justify-content:center; gap:.4rem;
     margin:2.5rem auto 0; flex-wrap:wrap;
@@ -116,7 +115,6 @@
   .pipeline .step.done { color:var(--accent-3); border-color:rgba(42,255,208,.35); background:rgba(42,255,208,.06); }
   .pipeline .arrow { color:var(--muted); opacity:.5; }
 
-  /* Results */
   .results { margin-top:3rem; }
   .section-head {
     display:flex; align-items:end; justify-content:space-between;
@@ -125,7 +123,6 @@
   .section-head h2 { font-family:'Syne',sans-serif; font-weight:700; font-size:1.35rem; letter-spacing:-.02em; }
   .section-head .meta { font-family:'DM Mono',monospace; font-size:.72rem; color:var(--muted); letter-spacing:.08em; }
 
-  /* Best card */
   .best-card {
     position:relative; background:var(--card); border:1px solid var(--border);
     border-radius:var(--radius); padding:1.75rem; margin-bottom:1.5rem;
@@ -139,22 +136,38 @@
     -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
   }
   .best-head { display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.25rem; }
+  .best-left { display:flex; gap:1rem; align-items:flex-start; }
+  .best-thumb {
+    width:64px; height:64px; border-radius:12px; object-fit:cover;
+    border:1px solid var(--border-hi); background:rgba(255,255,255,.03);
+  }
   .best-title { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; letter-spacing:-.02em; margin-bottom:.5rem; }
-  .best-sub { font-family:'DM Mono',monospace; font-size:.75rem; color:var(--muted); display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; }
+  .best-sub { font-family:'DM Mono',monospace; font-size:.72rem; color:var(--muted); display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
   .best-price { text-align:right; }
   .best-price .amt { font-family:'DM Mono',monospace; font-size:1.75rem; font-weight:500; color:var(--accent-3); text-shadow:0 0 24px rgba(42,255,208,.35); letter-spacing:-.02em; }
   .best-price .lbl { font-family:'DM Mono',monospace; font-size:.65rem; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; }
 
+  .pill {
+    display:inline-flex; align-items:center;
+    padding:.15rem .55rem; border-radius:999px;
+    background:rgba(124,106,255,.12); color:#c3b8ff;
+    border:1px solid rgba(124,106,255,.28);
+    font-size:.68rem; letter-spacing:.05em;
+  }
+  .pill.sub {
+    background:rgba(255,255,255,.04); color:var(--muted);
+    border-color:var(--border);
+  }
+
   .risk-pill {
     display:inline-flex; align-items:center; gap:.4rem;
     padding:.25rem .7rem; border-radius:999px;
-    font-family:'DM Mono',monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+    font-family:'DM Mono',monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase;
   }
   .risk-Low { background:rgba(42,255,208,.1); color:var(--accent-3); border:1px solid rgba(42,255,208,.3); }
   .risk-Medium { background:rgba(255,209,102,.1); color:var(--warn); border:1px solid rgba(255,209,102,.3); }
   .risk-High { background:rgba(255,107,107,.1); color:var(--danger); border:1px solid rgba(255,107,107,.3); }
 
-  /* Sub-score bars */
   .subscores { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin:1.25rem 0; }
   .subscore { font-family:'DM Mono',monospace; font-size:.7rem; }
   .subscore .row { display:flex; justify-content:space-between; margin-bottom:.35rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
@@ -166,7 +179,6 @@
     transition:width 1s cubic-bezier(.2,.8,.2,1);
   }
 
-  /* Pros / warnings / reasoning */
   .cols { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem; }
   .panel {
     background:rgba(255,255,255,.02); border:1px solid var(--border);
@@ -200,13 +212,13 @@
   }
   .btn.ghost:hover { background:rgba(255,255,255,.08); }
 
-  /* Table */
-  .table-wrap { border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--card); backdrop-filter:blur(16px); }
+  .table-wrap { border:1px solid var(--border); border-radius:14px; overflow:auto; background:var(--card); backdrop-filter:blur(16px); }
   table { width:100%; border-collapse:collapse; font-family:'DM Mono',monospace; font-size:.78rem; }
   thead th {
     text-align:left; padding:.85rem 1rem; color:var(--muted); font-weight:400;
     letter-spacing:.1em; text-transform:uppercase; font-size:.65rem;
     background:rgba(255,255,255,.02); border-bottom:1px solid var(--border);
+    white-space:nowrap;
   }
   tbody td { padding:.85rem 1rem; border-bottom:1px solid var(--border); vertical-align:middle; }
   tbody tr:last-child td { border-bottom:none; }
@@ -214,6 +226,10 @@
   tbody tr.top td { background:linear-gradient(90deg,rgba(124,106,255,.08),transparent); }
   td.rank { color:var(--muted); width:36px; }
   td.title { font-family:'Inter',sans-serif; font-size:.85rem; color:var(--text); max-width:280px; }
+  td.title .sub {
+    font-family:'DM Mono',monospace; font-size:.65rem; color:var(--muted);
+    margin-top:.2rem; letter-spacing:.06em;
+  }
   td.num { text-align:right; }
   td .score-badge {
     display:inline-block; padding:.2rem .55rem; border-radius:999px;
@@ -225,7 +241,6 @@
   td a { color:var(--accent); text-decoration:none; }
   td a:hover { text-decoration:underline; }
 
-  /* Empty / error / loading */
   .state {
     text-align:center; padding:3rem 1rem; color:var(--muted);
     font-family:'DM Mono',monospace; font-size:.85rem; letter-spacing:.05em;
@@ -271,9 +286,9 @@
   <nav>
     <div class="logo"><div class="logo-mark"></div>SmartBuy AI</div>
     <div class="nav-links">
-      <a href="#" data-q="iPhone 16 under 80000">iPhone 16</a>
-      <a href="#" data-q="Samsung Galaxy S24+ under 70000">Galaxy S24+</a>
-      <a href="#" data-q="Sony WH-1000XM5">WH-1000XM5</a>
+      <a data-q="iPhone 16 under 80000">iPhone 16</a>
+      <a data-q="Samsung Galaxy S24+ under 70000">Galaxy S24+</a>
+      <a data-q="Sony WH-1000XM5">WH-1000XM5</a>
     </div>
     <div class="status" id="status"><span class="dot"></span><span id="status-text">connecting…</span></div>
   </nav>
@@ -328,12 +343,10 @@
 </div>
 
 <script>
-/* ─── CONFIG ─────────────────────────────────────────────
-   Change API_BASE if your backend runs elsewhere.
-─────────────────────────────────────────────────────────── */
+/* ─── CONFIG ─────────────────────────────────────────── */
 const API_BASE = "http://localhost:8000";
 
-/* ─── DOM ──────────────────────────────────────────────── */
+/* ─── DOM ────────────────────────────────────────────── */
 const $ = (s) => document.querySelector(s);
 const form = $("#search-form");
 const input = $("#query");
@@ -344,12 +357,11 @@ const statusText = $("#status-text");
 const footerMeta = $("#footer-meta");
 const pipelineEl = $("#pipeline");
 
-/* ─── Backend health check ─────────────────────────────── */
+/* ─── Health check ───────────────────────────────────── */
 async function ping() {
   try {
-    const r = await fetch(`${API_BASE}/docs`, { method: "HEAD" });
-    if (r.ok || r.status === 200) setStatus("ok", "backend online");
-    else setStatus("ok", "backend reachable");
+    const r = await fetch(`${API_BASE}/docs`, { method: "GET", mode: "no-cors" });
+    setStatus("ok", "backend reachable");
   } catch {
     setStatus("err", "backend offline");
   }
@@ -359,16 +371,98 @@ function setStatus(kind, text) {
   statusText.textContent = text;
 }
 
-/* ─── Query shortcuts ──────────────────────────────────── */
-document.querySelectorAll("[data-q]").forEach(el => {
-  el.addEventListener("click", (e) => {
-    e.preventDefault();
-    input.value = el.dataset.q;
-    form.requestSubmit();
-  });
-});
+/* ─── Helpers ────────────────────────────────────────── */
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+const inr = (n) => n == null ? "—" : "₹" + Number(n).toLocaleString("en-IN");
+const pct = (n) => n == null ? "—" : `${Number(n).toFixed(0)}%`;
+const num = (n, d=1) => n == null ? "—" : Number(n).toFixed(d);
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
-/* ─── Pipeline animation ───────────────────────────────── */
+/* Pick first non-empty value among aliases */
+const pick = (obj, ...keys) => {
+  for (const k of keys) {
+    if (obj && obj[k] !== undefined && obj[k] !== null && obj[k] !== "") return obj[k];
+  }
+  return null;
+};
+
+/* Extract a URL from any nested structure */
+function extractUrl(p) {
+  const direct = pick(p, "url", "link", "product_url", "store_url", "buy_url", "href", "product_link");
+  if (direct) return direct;
+  // nested: { seller: { url } } / { store: { link } } / { metadata: { url } }
+  for (const key of ["seller","store","vendor","metadata","meta","source_info"]) {
+    if (p[key] && typeof p[key] === "object") {
+      const inner = pick(p[key], "url","link","href","product_url","store_url");
+      if (inner) return inner;
+    }
+  }
+  // offers array (schema.org style)
+  const offers = pick(p, "offers", "variants");
+  if (Array.isArray(offers) && offers[0]) {
+    const u = pick(offers[0], "url","link","href");
+    if (u) return u;
+  }
+  return null;
+}
+
+/* Normalize a raw product from ANY backend shape */
+function normalizeProduct(p) {
+  if (!p || typeof p !== "object") return null;
+  const subs = p.subscores || p.sub_scores || p.scores || p.breakdown || {};
+
+  return {
+    title:        pick(p, "title", "name", "product_name", "product"),
+    platform:     pick(p, "platform", "source", "store_name", "retailer", "seller_name", "store", "seller", "brand_store"),
+    seller_label: pick(p, "seller_label", "seller_sub", "sub_label", "seller_type", "seller_kind"),
+    url:          extractUrl(p),
+    image:        pick(p, "image", "image_url", "thumbnail", "img", "photo"),
+    price:        pick(p, "price", "price_inr", "amount", "cost", "final_price"),
+    currency:     pick(p, "currency") || "INR",
+    rating:       pick(p, "rating", "avg_rating", "stars", "rating_value"),
+    review_count: pick(p, "review_count", "reviews", "num_reviews", "ratings_count", "reviews_count"),
+    sentiment_score: pick(p, "sentiment_score", "sentiment"),
+    sentiment_label: pick(p, "sentiment_label", "sentiment_text", "sentiment_class"),
+    fake_review_pct: pick(p, "fake_review_pct", "fake_pct", "fake_review_percentage", "fake_reviews", "fake_percentage"),
+    value_score:  pick(p, "value_score", "raw_score"),
+    final_score:  pick(p, "final_score", "audited_score", "score"),
+    risk:         pick(p, "risk", "risk_level"),
+    issues:       pick(p, "issues", "warnings") || [],
+    pros:         pick(p, "pros") || [],
+    reasoning:    pick(p, "reasoning", "explanation", "why", "rationale"),
+    subscores: {
+      R: pick(subs, "R", "rating", "rating_score"),
+      S: pick(subs, "S", "sentiment", "sentiment_score"),
+      V: pick(subs, "V", "review_volume", "volume", "review_volume_score"),
+      P: pick(subs, "P", "P_adv", "price_advantage", "price", "price_score"),
+      T: pick(subs, "T", "trust", "seller_trust", "trust_score"),
+    },
+    _raw: p,
+  };
+}
+
+/* Normalize full response */
+function normalizeResponse(data) {
+  const allRaw = data.all_products || data.products || data.results || data.candidates || [];
+  const bestRaw = data.best || data.recommendation || data.top || data.winner || allRaw[0];
+
+  const best = normalizeProduct(bestRaw);
+  const all = allRaw.map(normalizeProduct).filter(Boolean);
+
+  return {
+    best,
+    all,
+    pros:      data.pros || best?.pros || [],
+    warnings:  data.warnings || best?.issues || [],
+    reasoning: data.reasoning || best?.reasoning || "",
+    plan:      data.plan || data.parsed_query || data.parsed || {},
+    _raw:      data,
+  };
+}
+
+/* ─── Pipeline animation ─────────────────────────────── */
 const STEPS = ["Planner","Search","Analysis","Scoring","Critic","Decision"];
 function resetPipeline() {
   pipelineEl.querySelectorAll(".step").forEach(s => s.classList.remove("active","done"));
@@ -377,21 +471,15 @@ async function animatePipeline() {
   resetPipeline();
   for (let i = 0; i < STEPS.length; i++) {
     const el = pipelineEl.querySelector(`.step[data-step="${STEPS[i]}"]`);
+    if (!el) continue;
     el.classList.add("active");
     await sleep(180);
     el.classList.remove("active");
     el.classList.add("done");
   }
 }
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
-/* ─── Render helpers ───────────────────────────────────── */
-const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-const inr = (n) => n == null ? "—" : "₹" + Number(n).toLocaleString("en-IN");
-const pct = (n) => n == null ? "—" : `${Number(n).toFixed(0)}%`;
-
+/* ─── States ─────────────────────────────────────────── */
 function loadingState(label = "Running pipeline…") {
   resultsEl.innerHTML = `<div class="state"><span class="spinner"></span>${esc(label)}</div>`;
 }
@@ -402,82 +490,133 @@ function emptyState(msg) {
   resultsEl.innerHTML = `<div class="state">${esc(msg)}</div>`;
 }
 
-/* ─── Main render ──────────────────────────────────────── */
-function renderResponse(data) {
-  const best = data.best || data.recommendation || (data.all_products && data.all_products[0]);
-  const all  = data.all_products || data.products || [];
+/* ─── Subscore bar ───────────────────────────────────── */
+function subscore(label, v) {
+  const val = (v == null) ? 0 : Math.max(0, Math.min(1, Number(v)));
+  return `
+    <div class="subscore">
+      <div class="row"><span>${esc(label)}</span><span class="v">${val.toFixed(2)}</span></div>
+      <div class="bar"><i style="width:${(val*100).toFixed(1)}%"></i></div>
+    </div>`;
+}
+
+/* ─── Row HTML for table ─────────────────────────────── */
+function rowHTML(p, i) {
+  const score = p.final_score ?? p.value_score ?? 0;
+  const cls = score >= 70 ? "" : score >= 50 ? "warn" : "bad";
+  const fake = p.fake_review_pct;
+
+  return `
+    <tr class="${i === 0 ? "top" : ""}">
+      <td class="rank">${i + 1}</td>
+      <td class="title">
+        ${esc(p.title || "—")}
+        ${p.seller_label ? `<div class="sub">${esc(p.seller_label)}</div>` : ""}
+      </td>
+      <td class="hide-sm">${esc(p.platform || "—")}</td>
+      <td class="num">${inr(p.price)}</td>
+      <td class="num hide-sm">${p.rating != null ? num(p.rating,1) : "—"}</td>
+      <td class="num hide-sm">${p.review_count != null ? Number(p.review_count).toLocaleString("en-IN") : "—"}</td>
+      <td class="num hide-sm">${fake != null ? pct(fake) : "—"}</td>
+      <td class="num"><span class="score-badge ${cls}">${num(score,1)}</span></td>
+      <td>
+        ${p.url
+          ? `<a href="${esc(p.url)}" target="_blank" rel="noopener" title="${esc(p.url)}">open ↗</a>`
+          : `<span style="color:var(--muted)">—</span>`}
+      </td>
+    </tr>`;
+}
+
+/* ─── Main render ────────────────────────────────────── */
+function renderResponse(rawData) {
+  const data = normalizeResponse(rawData);
+  const { best, all, pros, warnings, reasoning, plan } = data;
 
   if (!best || !all.length) {
     emptyState("No products returned for this query.");
     return;
   }
 
-  const subs = best.subscores || {};
-  const pros = data.pros || [];
-  const warnings = data.warnings || best.issues || [];
-  const reasoning = data.reasoning || "";
-  const risk = (best.risk || "Medium");
-  const meta = data.plan || {};
+  const subs = best.subscores;
+  const risk = best.risk || "Medium";
+  const hasPros = pros.length > 0;
+  const hasWarnings = warnings.length > 0;
+  const hasSubs = Object.values(subs).some(v => v != null);
 
   resultsEl.innerHTML = `
     <div class="section-head">
       <h2>Best match</h2>
       <div class="meta">
-        ${meta.product_name ? esc(meta.product_name) : ""}
-        ${meta.budget_inr ? " · ≤ " + inr(meta.budget_inr) : ""}
-        ${meta.preferences?.length ? " · " + esc(meta.preferences.join(", ")) : ""}
+        ${plan.product_name ? esc(plan.product_name) : ""}
+        ${plan.budget_inr ? " · ≤ " + inr(plan.budget_inr) : ""}
+        ${plan.preferences?.length ? " · " + esc(plan.preferences.join(", ")) : ""}
       </div>
     </div>
 
     <article class="best-card">
       <div class="best-head">
-        <div>
-          <div class="best-title">${esc(best.title || best.name || "Untitled product")}</div>
-          <div class="best-sub">
-            <span>${esc(best.platform || best.source || "unknown")}</span>
-            ${best.rating != null ? `<span>★ ${Number(best.rating).toFixed(1)}</span>` : ""}
-            ${best.review_count != null ? `<span>${Number(best.review_count).toLocaleString("en-IN")} reviews</span>` : ""}
-            ${best.fake_review_pct != null ? `<span>fake ${pct(best.fake_review_pct)}</span>` : ""}
-            <span class="risk-pill risk-${esc(risk)}">${esc(risk)} risk</span>
+        <div class="best-left">
+          ${best.image ? `<img class="best-thumb" src="${esc(best.image)}" alt="" onerror="this.style.display='none'"/>` : ""}
+          <div>
+            <div class="best-title">${esc(best.title || "Untitled product")}</div>
+            <div class="best-sub">
+              ${best.platform ? `<span class="pill">${esc(best.platform)}</span>` : ""}
+              ${best.seller_label ? `<span class="pill sub">${esc(best.seller_label)}</span>` : ""}
+              ${best.rating != null ? `<span>★ ${num(best.rating,1)}</span>` : ""}
+              ${best.review_count != null ? `<span>${Number(best.review_count).toLocaleString("en-IN")} reviews</span>` : ""}
+              ${best.sentiment_label ? `<span>sentiment: ${esc(best.sentiment_label)}</span>` : ""}
+              ${best.sentiment_score != null && !best.sentiment_label ? `<span>sentiment: ${num(best.sentiment_score,2)}</span>` : ""}
+              ${best.fake_review_pct != null ? `<span>fake: ${pct(best.fake_review_pct)}</span>` : ""}
+              <span class="risk-pill risk-${esc(risk)}">${esc(risk)} risk</span>
+            </div>
           </div>
         </div>
         <div class="best-price">
           <div class="amt">${inr(best.price)}</div>
-          <div class="lbl">value score ${best.final_score != null ? Number(best.final_score).toFixed(1) : "—"}/100</div>
+          <div class="lbl">
+            ${best.final_score != null ? `audited ${num(best.final_score,1)}` : ""}
+            ${best.value_score != null ? `${best.final_score != null ? " · " : ""}raw ${num(best.value_score,1)}` : ""}
+            ${best.final_score == null && best.value_score == null ? "no score" : "/100"}
+          </div>
         </div>
       </div>
 
-      ${Object.keys(subs).length ? `
+      ${hasSubs ? `
         <div class="subscores">
-          ${subscore("Rating (R)",       subs.R)}
-          ${subscore("Sentiment (S)",    subs.S)}
-          ${subscore("Review Vol (V)",   subs.V)}
-          ${subscore("Price Adv (P)",    subs.P ?? subs.P_adv)}
-          ${subscore("Seller Trust (T)", subs.T)}
+          ${subs.R != null ? subscore("Rating (R)",       subs.R) : ""}
+          ${subs.S != null ? subscore("Sentiment (S)",    subs.S) : ""}
+          ${subs.V != null ? subscore("Review Vol (V)",   subs.V) : ""}
+          ${subs.P != null ? subscore("Price Adv (P)",    subs.P) : ""}
+          ${subs.T != null ? subscore("Seller Trust (T)", subs.T) : ""}
         </div>
       ` : ""}
 
-      <div class="cols">
-        <div class="panel">
-          <h4>Pros</h4>
-          <ul>${pros.length ? pros.map(p => `<li>${esc(p)}</li>`).join("") : "<li>—</li>"}</ul>
-        </div>
-        <div class="panel warn">
-          <h4>Warnings / Critic issues</h4>
-          <ul>${warnings.length ? warnings.map(w => `<li>${esc(w)}</li>`).join("") : "<li>None flagged</li>"}</ul>
-        </div>
-        ${reasoning ? `
-          <div class="panel reasoning">
-            <h4>Agent reasoning</h4>
-            <p>${esc(reasoning)}</p>
+      ${(hasPros || hasWarnings || reasoning) ? `
+        <div class="cols">
+          <div class="panel">
+            <h4>Pros</h4>
+            <ul>${hasPros ? pros.map(p => `<li>${esc(p)}</li>`).join("") : "<li>None reported</li>"}</ul>
           </div>
-        ` : ""}
-      </div>
+          <div class="panel warn">
+            <h4>Warnings / Critic issues</h4>
+            <ul>${hasWarnings ? warnings.map(w => `<li>${esc(w)}</li>`).join("") : "<li>None flagged</li>"}</ul>
+          </div>
+          ${reasoning ? `
+            <div class="panel reasoning">
+              <h4>Agent reasoning</h4>
+              <p>${esc(reasoning)}</p>
+            </div>
+          ` : ""}
+        </div>
+      ` : ""}
 
       <div class="best-actions">
-        ${best.url ? `<a class="btn" href="${esc(best.url)}" target="_blank" rel="noopener">Buy on ${esc(best.platform || "store")}
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>` : ""}
+        ${best.url ? `
+          <a class="btn" href="${esc(best.url)}" target="_blank" rel="noopener">
+            Buy on ${esc(best.platform || "store")}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        ` : `<span class="btn ghost" style="opacity:.5;cursor:default">No store link provided</span>`}
         <button class="btn ghost" id="copy-json">Copy raw JSON</button>
       </div>
     </article>
@@ -499,7 +638,7 @@ function renderResponse(data) {
             <th class="num hide-sm">Reviews</th>
             <th class="num hide-sm">Fake %</th>
             <th class="num">Score</th>
-            <th></th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>
@@ -509,43 +648,24 @@ function renderResponse(data) {
     </div>
   `;
 
-  // Wire copy button
   const cp = $("#copy-json");
   if (cp) cp.addEventListener("click", () => {
-    navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+    navigator.clipboard.writeText(JSON.stringify(rawData, null, 2));
     cp.textContent = "Copied ✓";
     setTimeout(() => (cp.textContent = "Copy raw JSON"), 1400);
   });
 }
 
-function subscore(label, v) {
-  const val = (v == null) ? 0 : Math.max(0, Math.min(1, Number(v)));
-  return `
-    <div class="subscore">
-      <div class="row"><span>${esc(label)}</span><span class="v">${val.toFixed(2)}</span></div>
-      <div class="bar"><i style="width:${(val*100).toFixed(1)}%"></i></div>
-    </div>`;
-}
+/* ─── Query shortcuts ────────────────────────────────── */
+document.querySelectorAll("[data-q]").forEach(el => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    input.value = el.dataset.q;
+    form.requestSubmit();
+  });
+});
 
-function rowHTML(p, i) {
-  const score = p.final_score ?? p.value_score ?? 0;
-  const cls = score >= 70 ? "" : score >= 50 ? "warn" : "bad";
-  const fake = p.fake_review_pct;
-  return `
-    <tr class="${i === 0 ? "top" : ""}">
-      <td class="rank">${i + 1}</td>
-      <td class="title">${esc(p.title || p.name || "—")}</td>
-      <td class="hide-sm">${esc(p.platform || p.source || "—")}</td>
-      <td class="num">${inr(p.price)}</td>
-      <td class="num hide-sm">${p.rating != null ? Number(p.rating).toFixed(1) : "—"}</td>
-      <td class="num hide-sm">${p.review_count != null ? Number(p.review_count).toLocaleString("en-IN") : "—"}</td>
-      <td class="num hide-sm">${fake != null ? pct(fake) : "—"}</td>
-      <td class="num"><span class="score-badge ${cls}">${Number(score).toFixed(1)}</span></td>
-      <td>${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">open ↗</a>` : ""}</td>
-    </tr>`;
-}
-
-/* ─── Submit handler ───────────────────────────────────── */
+/* ─── Submit ─────────────────────────────────────────── */
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const query = input.value.trim();
@@ -572,6 +692,10 @@ form.addEventListener("submit", async (e) => {
     }
 
     const data = await res.json();
+
+    /* Optional: log so you can inspect the exact shape */
+    console.log("[SmartBuy AI] /search response:", data);
+
     await pipelinePromise;
     renderResponse(data);
 
@@ -589,7 +713,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-/* ─── Init ─────────────────────────────────────────────── */
+/* ─── Init ───────────────────────────────────────────── */
 ping();
 emptyState("Enter a query above — results will appear here.");
 </script>
