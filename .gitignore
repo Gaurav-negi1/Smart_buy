@@ -49,5 +49,3 @@ frontend/build/
 Thumbs.db
 desktop.ini
 
-# Nested repository metadata
-Smart Buy/.git/
